@@ -1,0 +1,39 @@
+<!doctype html>
+<html ng-app="todoApp" id="html">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="todo.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="todo.css">
+  </head>
+  <body>
+    <main>
+    
+    <div class="container-fluid" >
+      <h2>Lista de Tarefas</h2>
+      <div ng-controller="TodoListController as todoList" >
+        <span>{{todoList.remaining()}} de {{todoList.todos.length}} tarefas esperando serem finalizadas</span>
+       
+       
+        <ul class="unstyled">
+          <li ng-repeat="todo in todoList.todos" style="list-style: none;">
+            <label class="checkbox">
+              <input type="checkbox" ng-model="todo.done">
+              <span class="done-{{todo.done}}">{{todo.text}}</span>
+            </label>
+          </li>
+        </ul>
+        <form ng-submit="todoList.addTodo()">
+          <input type="text" ng-model="todoList.todoText" size="28" class="add"
+                placeholder="Adicionar nova tarefa">
+          <input class="btn btn-success" type="submit" value="add">
+          <input ng-click="todoList.archive()" type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+          <label class="btn btn-outline-danger" for="danger-outlined">Limpar marcadas</label>
+        </form>
+      </div>
+   </div>
+   
+  </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>
